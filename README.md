@@ -29,6 +29,7 @@ The code in this repository is configured to work in a local network.
 
 var server_url="http://192.168.0.104/"; //Set this to your computer's ip (Express server)
 ```
+
 ```javascript
 //In: server/config.js
 {
@@ -36,6 +37,7 @@ var server_url="http://192.168.0.104/"; //Set this to your computer's ip (Expres
     'mongoUrl' : 'mongodb://localhost:27017/PMS'    //IP of the Mongo database
 }
 ```
+
 ```c++
 //IN: arduino/Monitoring_System_v_2.0.ino
 #define SERVER_IP "http://192.168.0.104/"   //IP of the Express server
@@ -45,11 +47,11 @@ Minor changes are required to deploy this code on the web (bypass website->esp r
 
 ### Web deployment
 
-The GUI populated with dummy data can be found here: https://jazibdawre.github.io/Plant-Monitoring-System-GUI/
+The GUI populated with dummy data can be found [here](https://jazibdawre.github.io/Plant-Monitoring-System-GUI/)
 
-The website and the REST api are served via an express server on heroku. The MongoDB database is hosted on MongoDB Atlas and is accessible via the express server. Check out the site at: https://pms-express-server.herokuapp.com/
+The website and the REST api are served via an express server on heroku. The MongoDB database is hosted on MongoDB Atlas and is accessible via the express server. Check out the site at: [heroku](https://pms-express-server.herokuapp.com/)
 
-Since running a separate hosting for the website, backend and the database is not needed for local usage of the system, the REST api is reimplemented in the ESP8266 on a web server along with a copy of the website files. The ESP8266 has mDNS and hence the website can be accessed either via its ip address or through http://grasshopper.local if connected to the same network witht he only downside being that the log size is limited to 11 data points due to storage constraints.
+Since running a separate hosting for the website, backend and the database is not needed for local usage of the system, the REST api is reimplemented in the ESP8266 on a web server along with a copy of the website files. The ESP8266 has mDNS and hence the website can be accessed either via its ip address or through [http://grasshopper.local](http://grasshopper.local) if connected to the same network witht he only downside being that the log size is limited to 11 data points due to storage constraints.
 
 ## Details
 
