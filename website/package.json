@@ -1,0 +1,43 @@
+{
+  "name": "plant-monitor-system",
+  "version": "1.0.0",
+  "description": "This is a website for displaying results of the arduino weather station",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run lite",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lite": "lite-server",
+    "clean": "rimraf dist",
+    "imagemin": "imagemin img/* --out-dir=dist/img && imagemin svg/* --out-dir=dist/svg",
+    "usemin": "usemin about.html -d dist --htmlmin -o dist/about.html && usemin actions.html -d dist --htmlmin -o dist/actions.html && usemin graphs.html -d dist --htmlmin -o dist/graphs.html && usemin humidity.html -d dist --htmlmin -o dist/humidity.html && usemin index.html -d dist --htmlmin -o dist/index.html && usemin logs.html -d dist --htmlmin -o dist/logs.html && usemin moisture.html -d dist --htmlmin -o dist/moisture.html && usemin sunlight.html -d dist --htmlmin -o dist/sunlight.html && usemin temperature.html -d dist --htmlmin -o dist/temperature.html && usemin watertank.html -d dist --htmlmin -o dist/watertank.html",
+    "fallback": "usemin forusemin.html -d dist",
+    "build": "npm run clean && npm run fallback && npm run imagemin && npm run usemin"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jazibdawre/Plant-Monitoring-System.git"
+  },
+  "author": "Jazib Dawre",
+  "license": "MIT",
+  "devDependencies": {
+    "cssmin": "^0.4.3",
+    "htmlmin": "0.0.7",
+    "lite-server": "^2.3.0",
+    "rimraf": "^2.6.2",
+    "uglifyjs": "^2.4.11",
+    "usemin-cli": "^0.6.0"
+  },
+  "bugs": {
+    "url": "https://github.com/jazibdawre/Plant-Monitoring-System/issues"
+  },
+  "homepage": "https://github.com/jazibdawre/Plant-Monitoring-System#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "bootstrap": "^4.5.0",
+    "handsontable": "^7.4.2",
+    "highcharts": "^8.1.1",
+    "ion-rangeslider": "^2.3.1",
+    "jquery": "^3.5.1",
+    "popper.js": "^1.16.1"
+  }
+}

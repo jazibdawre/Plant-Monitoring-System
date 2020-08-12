@@ -1,1 +1,1236 @@
-var server_url="http://127.0.0.1:3000/";$(document).ready(function(){$(".js-range-slider").length&&$(".js-range-slider").ionRangeSlider({type:"double",min:0,max:100,from:0,to:0,grid:!0}),$("#loginmodalButton").click(function(){$("#loginModal").modal("show")}),$("#signupmodalButton").click(function(){$("#signupModal").modal("show")})}),$(window).on("load",function(){axios.defaults.baseURL=this.server_url;if(get=function(e){try{return axios.get(e).then(function(e){return 200==e.status?Object.assign([],e.data.data):(console.log("Response: "+e.status+" "+e.statusText),new Error("Error "+e.status+" "+e.statusText))}).catch(function(t){return t.response?(console.log("Error "+t.response.status+" "+t.response.statusText+" Couldn't fetch data from server for"+e),console.log(t.config),console.log(t.response.data),console.log(t.response.status),console.log(t.response.headers),new Error("Error "+t.response)):t.request?(console.log("Server not responding for "+e),console.log(t.config),console.log(t.request),new Error("Error "+t.request)):(console.log(t.config),console.log("Error",t.message),new Error("Error "+t.response.status+" "+t.response.statusText))})}catch(e){return console.log(e),new Error("Error "+e)}},post=function(e,t){try{return axios.post(e,t,{headers:{"Access-Control-Allow-Origin":"*","Content-Type":"application/json;charset=utf-8"}}).then(function(e){return 200==e.status|201==e.status?"Successful":(console.log(e),"Successful")}).catch(function(t){return t.response?(alert("Error "+t.response.status+" "+t.response.statusText+" couldn't complete your request"),console.log(t.config),console.log(t.response.data),console.log(t.response.status),console.log(t.response.headers),new Error("Error "+t.response)):t.request?(alert("Server is not responding for "+e),console.log(t.request),console.log(t.config),new Error("Error "+t.request)):(console.log("Error",t.message),console.log(t.config),new Error("Error "+t.response.status+" "+t.response.statusText))})}catch(e){console.log(e)}},$("#signinButton").click(function(){alert("Login is temporarily disabled")}),$("#signupButton").click(function(){alert("Registration is temporarily disabled")}),"/"!=window.location.pathname&&"/index.html"!=window.location.pathname&&"/actions.html"!=window.location.pathname&&"/about.html"!=window.location.pathname&&get("logs").then(function(e){var t,o=e.reverse(),r=["NA","NA","NA","NA","NA","NA","NA","NA","NA"],i=[0,0,0,0,0],a=[100,100,100,10,100];if(graph_data=function(e){var t=e;return t[3]=10*t[3],t},display_home=function(){"NA"!=r[0]?"Good"==r[0]?$("#overallstatus").html('<div style="color: green;"><p><h3>Good</h3></p><p>All systems operational<br>All parameters are within limits</p></div>'):"Mild"==r[0]?$("#overallstatus").html('<div style="color: orange;"><p><h3>Mild Issue</h3></p><p>All systems operational<br>Some parameters are out of limits</p></div>'):"Bad"==r[0]?$("#overallstatus").html('<div style="color: red;"><p><h3>Major Issue</h3></p><p>All systems operational<br>Some parameters are out of limits</p></div>'):$("#overallstatus").html('<div style="color: red;"><p>Server gave a malformed response</p><p>Response:<br/>'+r[0]+"</p></div>"):$("#overallstatus").html("<div><p><h3>...</h3></p><p>Retrieving data from server</p></div>"),"NA"!=r[4]?r[4]>=i[0]&&r[4]<=a[0]?$("#temperature").html('<div style="color: green;"><p><h3>'+r[4]+"°C</h3></p><p>Suitable Temperature</p></div>"):r[4]<i[0]?$("#temperature").html('<div style="color: blue;"><p><h3>'+r[4]+"°C</h3></p><p>Temperature Low</p></div>"):r[4]>a[0]?$("#temperature").html('<div style="color: red;"><p><h3>'+r[4]+"°C</h3></p><p>Temperature High</p></div>"):$("#temperature").html('<div style="color: red;"><p>Server gave a malformed response</p><p>Response:<br/>'+r[4]+"</p></div>"):$("#temperature").html("<div><p><h3>...</h3></p><p>Retrieving data from server</p></div>"),"NA"!=r[5]?r[5]>=i[1]&&r[5]<=a[1]?$("#humidity").html('<div style="color: green;"><p><h3>'+r[5]+"%</h3></p><p>Perfect Humidity</p></div>"):r[5]<i[1]?$("#humidity").html('<div style="color: red;"><p><h3>'+r[5]+"%</h3></p><p>Humidity Low</p></div>"):r[5]>a[1]?$("#humidity").html('<div style="color: orange;"><p><h3>'+r[5]+"%</h3></p><p>Humidity High</p></div>"):$("#humidity").html('<div style="color: red;"><p>Server gave a malformed response</p><p>Response:<br/>'+r[5]+"</p></div>"):$("#humidity").html("<div><p><h3>...</h3></p><p>Retrieving data from server</p></div>"),"NA"!=r[6]?r[6]>=i[2]&&r[6]<=a[2]?$("#moisture").html('<div style="color: green;"><p><h3>'+r[6]+"%</h3></p><p>Happy Soil</p></div>"):r[6]<i[2]?$("#moisture").html('<div style="color: red;"><p><h3>'+r[6]+"%</h3></p><p>Dry Soil</p></div>"):r[6]>a[2]?$("#moisture").html('<div style="color: orange;"><p><h3>'+r[6]+"%</h3></p><p>Wet Soil</p></div>"):$("#moisture").html('<div style="color: red;"><p>Server gave a malformed response</p><p>Response:<br/>'+r[6]+"</p></div>"):$("#moisture").html("<div><p><h3>...</h3></p><p>Retrieving data from server</p></div>"),"NA"!=r[7]?r[7]>=i[3]&&r[7]<=a[3]?$("#sunlight").html('<div style="color: green;"><p><h3>'+r[7]+" hours</h3></p><p>Sunny Day</p></div>"):r[7]<i[3]?$("#sunlight").html('<div style="color: blue;"><p><h3>'+r[7]+" hours</h3></p><p>Overcast</p></div>"):r[7]>a[3]?$("#sunlight").html('<div style="color: red;"><p><h3>'+r[7]+" hours</h3></p><p>Too much Sunlight</p></div>"):$("#sunlight").html('<div style="color: red;"><p>Server gave a malformed response</p><p>Response:<br/>'+r[7]+"</p></div>"):$("#sunlight").html("<div><p><h3>...</h3></p><p>Retrieving data from server</p></div>"),"NA"!=r[8]?r[8]>=i[4]&&r[8]<=a[4]?$("#waterlevel").html('<div style="color: green;"><p><h3>'+r[8]+"%</h3></p><p>Water Level Ok</p></div>"):r[8]<i[4]?$("#waterlevel").html('<div style="color: red;"><p><h3>'+r[8]+"%</h3></p><p>Water Level Low</p></div>"):r[8]>a[4]?$("#waterlevel").html('<div style="color: blue;"><p><h3>'+r[8]+"%</h3></p><p>Water Level High</p></div>"):$("#waterlevel").html('<div style="color: red;"><p>Server gave a malformed response</p><p>Response:<br/>'+r[8]+"</p></div>"):$("#waterlevel").html("<div><p><h3>...</h3></p><p>Retrieving data from server</p></div>"),"NA"!=r[1]?"Idle"==r[1]?$("#waterpump").html('<div style="color: green;"><p><h3>'+r[1]+"</h3></p><p>Switched Off</p></div>"):"Active"==r[1]?$("#waterpump").html('<div style="color: orange;"><p><h3>'+r[1]+"</h3></p><p>Switched On</p></div>"):$("#waterpump").html('<div style="color: red;"><p>Server gave a malformed response</p><p>Response:<br/>'+r[0]+"</p></div>"):$("#waterpump").html("<div><p><h3>...</h3></p><p>Retrieving data from server</p></div>")},display_home(),get("latest").then(function(e){r=e,get("limits").then(function(e){i=e[0],a=e[1],$("#overall_graph").length&&(s.series[0].setData(graph_data(e[0]),!0),s.series[1].setData(graph_data(e[1]),!0),s.series[2].setData(graph_data(o[0].slice(1)),!0)),display_home()},function(e){this.console.log(e)}).catch(function(e){this.console.log(e)})},function(e){this.console.log(e)}).catch(function(e){this.console.log(e)}),this.setInterval(function(){get("latest").then(function(e){if(r=e,display_home(),e[3]!=o[0][0]){var i=new Date(e[3]).getTime();o.unshift(e.slice(3)),t=o[0].slice(1),$("#overall_graph").length&&s.series[2].setData(graph_data(t),!0),$("#temperature_graph").length&&p.series[0].addPoint([i,e[4]],!0,!0),$("#humidity_graph").length&&d.series[0].addPoint([i,e[5]],!0,!0),$("#moisture_graph").length&&h.series[0].addPoint([i,e[6]],!0,!0),$("#sunlight_graph").length&&m.series[0].addPoint([i,e[7]],!0,!0),$("#waterlevel_graph").length&&u.series[0].addPoint([i,e[8]],!0,!0)}},function(e){this.console.log(e)}).catch(function(e){this.console.log(e)})},3e5),$("#spreadsheet").length)var n=document.getElementById("spreadsheet"),l=new Handsontable(n,{data:o,rowHeaders:!0,colHeaders:[""," Temperature (°C) "," Humidity (%) "," Moisture (%) "," Sunlight (hours) "," Water Level (%) "],width:"100%",height:"100%",stretchH:"all",observeChanges:!0,exportFile:!0,licenseKey:"non-commercial-and-evaluation"});if($("#downloadlogsButton").click(function(){l.getPlugin("exportFile").downloadFile("csv",{filename:"PMS Server Logs"})}),$("#temperature_spreadsheet").length)var n=document.getElementById("temperature_spreadsheet"),l=new Handsontable(n,{data:o,rowHeaders:!0,colHeaders:[""," Temperature (°C) "],width:"100%",height:"100%",stretchH:"all",observeChanges:!0,exportFile:!0,columns:[{data:0},{data:1}],fixedColumnsLeft:1,licenseKey:"non-commercial-and-evaluation"});if($("#temperaturedownloadButton").click(function(){l.getPlugin("exportFile").downloadFile("csv",{filename:"PMS Temperature Logs"})}),$("#humidity_spreadsheet").length)var n=document.getElementById("humidity_spreadsheet"),l=new Handsontable(n,{data:o,rowHeaders:!0,colHeaders:[""," Humidity (%) "],width:"100%",height:"100%",stretchH:"all",observeChanges:!0,exportFile:!0,columns:[{data:0},{data:2}],fixedColumnsLeft:1,licenseKey:"non-commercial-and-evaluation"});if($("#humiditydownloadButton").click(function(){l.getPlugin("exportFile").downloadFile("csv",{filename:"PMS Humidity Logs"})}),$("#moisture_spreadsheet").length)var n=document.getElementById("moisture_spreadsheet"),l=new Handsontable(n,{data:o,rowHeaders:!0,colHeaders:[""," Moisture (%) "],width:"100%",height:"100%",stretchH:"all",observeChanges:!0,exportFile:!0,columns:[{data:0},{data:3}],fixedColumnsLeft:1,licenseKey:"non-commercial-and-evaluation"});if($("#moisturedownloadButton").click(function(){l.getPlugin("exportFile").downloadFile("csv",{filename:"PMS Moisture Logs"})}),$("#sunlight_spreadsheet").length)var n=document.getElementById("sunlight_spreadsheet"),l=new Handsontable(n,{data:o,rowHeaders:!0,colHeaders:[""," Sunlight (hours) "],width:"100%",height:"100%",stretchH:"all",observeChanges:!0,exportFile:!0,columns:[{data:0},{data:4}],fixedColumnsLeft:1,licenseKey:"non-commercial-and-evaluation"});if($("#sunlightdownloadButton").click(function(){l.getPlugin("exportFile").downloadFile("csv",{filename:"PMS Sunlight Logs"})}),$("#waterlevel_spreadsheet").length)var n=document.getElementById("waterlevel_spreadsheet"),l=new Handsontable(n,{data:o,rowHeaders:!0,colHeaders:[""," Water Level (%) "],width:"100%",height:"100%",stretchH:"all",observeChanges:!0,exportFile:!0,columns:[{data:0},{data:5}],fixedColumnsLeft:1,licenseKey:"non-commercial-and-evaluation"});if($("#waterleveldownloadButton").click(function(){l.getPlugin("exportFile").downloadFile("csv",{filename:"PMS Water Level Logs"})}),$("#overall_graph").length)var s=Highcharts.chart("overall_graph",{chart:{polar:!0,type:"line"},title:{text:""},pane:{size:"80%"},xAxis:{type:"datetime",categories:["Temperature","Humidity","Soil Moisture","Sunlight","Water Level"],tickmarkPlacement:"on",lineWidth:0},yAxis:{gridLineInterpolation:"polygon",lineWidth:0,min:0,ceiling:125},tooltip:{shared:!0,pointFormat:'<span style="color:{series.color}">{series.name}: <b>{point.y:,.0f}</b><br/>'},series:[{name:"Minimum",data:i,pointPlacement:"off"},{name:"Maximum",data:a,pointPlacement:"off"},{name:"Current",data:t,pointPlacement:"on"}],responsive:{rules:[{condition:{maxWidth:500},chartOptions:{legend:{align:"center",verticalAlign:"bottom",layout:"horizontal"},pane:{size:"70%"}}}]}});if($("#temperature_graph").length)var p=Highcharts.chart("temperature_graph",{chart:{type:"line",animation:Highcharts.svg,marginRight:10},title:{text:""},time:{useUTC:!1},xAxis:{type:"datetime",tickAmount:10},yAxis:{title:{text:"Temperature in °C"},min:0,max:60,plotLines:[{value:0,width:1,color:"#808080"}]},tooltip:{headerFormat:"<b>{series.name}</b><br/>",pointFormat:"{point.y}°C on {point.x:%d-%m-%Y at %H:%M}"},legend:{enabled:!1},series:[{name:"Temperature",data:e.map(function(e){return[new Date(e[0]).getTime(),e[1]]}).reverse()}]});if($("#humidity_graph").length)var d=Highcharts.chart("humidity_graph",{chart:{type:"line",animation:Highcharts.svg,marginRight:10},title:{text:""},time:{useUTC:!1},xAxis:{type:"datetime",tickAmount:10},yAxis:{title:{text:"Humidity in %"},min:0,max:100,plotLines:[{value:0,width:1,color:"#808080"}]},tooltip:{headerFormat:"<b>{series.name}</b><br/>",pointFormat:"{point.y}% on {point.x:%d-%m-%Y at %H:%M}"},legend:{enabled:!1},series:[{name:"Humidity",data:e.map(function(e){return[new Date(e[0]).getTime(),e[2]]}).reverse()}]});if($("#moisture_graph").length)var h=Highcharts.chart("moisture_graph",{chart:{type:"line",animation:Highcharts.svg,marginRight:10},title:{text:""},time:{useUTC:!1},xAxis:{type:"datetime",tickAmount:10},yAxis:{title:{text:"Soil Moisture in %"},min:0,max:100,plotLines:[{value:0,width:1,color:"#808080"}]},tooltip:{headerFormat:"<b>{series.name}</b><br/>",pointFormat:"{point.y}% on {point.x:%d-%m-%Y at %H:%M}"},legend:{enabled:!1},series:[{name:"Moisture",data:e.map(function(e){return[new Date(e[0]).getTime(),e[3]]}).reverse()}]});if($("#sunlight_graph").length)var m=Highcharts.chart("sunlight_graph",{chart:{type:"line",animation:Highcharts.svg,marginRight:10},title:{text:""},time:{useUTC:!1},xAxis:{type:"datetime",tickAmount:10},yAxis:{title:{text:"Sunlight in hours/day"},min:0,max:10,plotLines:[{value:0,width:1,color:"#808080"}]},tooltip:{headerFormat:"<b>{series.name}</b><br/>",pointFormat:"{point.y} hours on {point.x:%d-%m-%Y at %H:%M}"},legend:{enabled:!1},series:[{name:"sunlight",data:e.map(function(e){return[new Date(e[0]).getTime(),e[4]]}).reverse()}]});if($("#waterlevel_graph").length)var u=Highcharts.chart("waterlevel_graph",{chart:{type:"line",animation:Highcharts.svg,marginRight:10},title:{text:""},time:{useUTC:!1},xAxis:{type:"datetime",tickAmount:10},yAxis:{title:{text:"Waterlevel in %"},min:0,max:100,plotLines:[{value:0,width:1,color:"#808080"}]},tooltip:{headerFormat:"<b>{series.name}</b><br/>",pointFormat:"{point.y}% on {point.x:%d-%m-%Y at %H:%M}"},legend:{enabled:!1},series:[{name:"waterlevel",data:e.map(function(e){return[new Date(e[0]).getTime(),e[5]]}).reverse()}]})},function(e){this.console.log(e)}).catch(function(e){this.console.log(e)}),"/"==window.location.pathname|"/index.html"==window.location.pathname){var e=["NA","NA","NA","NA","NA","NA","NA","NA","NA"],t=[0,0,0,0,0],o=[100,100,100,10,100];display_home=function(){"NA"!=e[0]?"Good"==e[0]?$("#overallstatus").html('<div style="color: green;"><p><h3>Good</h3></p><p>All systems operational<br>All parameters are within limits</p></div>'):"Mild"==e[0]?$("#overallstatus").html('<div style="color: orange;"><p><h3>Mild Issue</h3></p><p>All systems operational<br>Some parameters are out of limits</p></div>'):"Bad"==e[0]?$("#overallstatus").html('<div style="color: red;"><p><h3>Major Issue</h3></p><p>All systems operational<br>Some parameters are out of limits</p></div>'):"Offline"==e[0]?$("#overallstatus").html('<div style="color: red;"><p><h3>Server Offline</h3></p><p>All systems shutdown</p></div>'):$("#overallstatus").html('<div style="color: red;"><p>Server gave a malformed response</p><p>Response:<br/>'+e[0]+"</p></div>"):$("#overallstatus").html("<div><p><h3>...</h3></p><p>Retrieving data from server</p></div>"),"NA"!=e[4]?e[4]>=t[0]&&e[4]<=o[0]?$("#temperature").html('<div style="color: green;"><p><h3>'+e[4]+"°C</h3></p><p>Suitable Temperature</p></div>"):e[4]<t[0]?$("#temperature").html('<div style="color: blue;"><p><h3>'+e[4]+"°C</h3></p><p>Temperature Low</p></div>"):e[4]>o[0]?$("#temperature").html('<div style="color: red;"><p><h3>'+e[4]+"°C</h3></p><p>Temperature High</p></div>"):$("#temperature").html('<div style="color: red;"><p>Server gave a malformed response</p><p>Response:<br/>'+e[4]+"</p></div>"):$("#temperature").html("<div><p><h3>...</h3></p><p>Retrieving data from server</p></div>"),"NA"!=e[5]?e[5]>=t[1]&&e[5]<=o[1]?$("#humidity").html('<div style="color: green;"><p><h3>'+e[5]+"%</h3></p><p>Perfect Humidity</p></div>"):e[5]<t[1]?$("#humidity").html('<div style="color: red;"><p><h3>'+e[5]+"%</h3></p><p>Humidity Low</p></div>"):e[5]>o[1]?$("#humidity").html('<div style="color: orange;"><p><h3>'+e[5]+"%</h3></p><p>Humidity High</p></div>"):$("#humidity").html('<div style="color: red;"><p>Server gave a malformed response</p><p>Response:<br/>'+e[5]+"</p></div>"):$("#humidity").html("<div><p><h3>...</h3></p><p>Retrieving data from server</p></div>"),"NA"!=e[6]?e[6]>=t[2]&&e[6]<=o[2]?$("#moisture").html('<div style="color: green;"><p><h3>'+e[6]+"%</h3></p><p>Happy Soil</p></div>"):e[6]<t[2]?$("#moisture").html('<div style="color: red;"><p><h3>'+e[6]+"%</h3></p><p>Dry Soil</p></div>"):e[6]>o[2]?$("#moisture").html('<div style="color: orange;"><p><h3>'+e[6]+"%</h3></p><p>Wet Soil</p></div>"):$("#moisture").html('<div style="color: red;"><p>Server gave a malformed response</p><p>Response:<br/>'+e[6]+"</p></div>"):$("#moisture").html("<div><p><h3>...</h3></p><p>Retrieving data from server</p></div>"),"NA"!=e[7]?e[7]>=t[3]&&e[7]<=o[3]?$("#sunlight").html('<div style="color: green;"><p><h3>'+e[7]+" hours</h3></p><p>Sunny Day</p></div>"):e[7]<t[3]?$("#sunlight").html('<div style="color: blue;"><p><h3>'+e[7]+" hours</h3></p><p>Overcast</p></div>"):e[7]>o[3]?$("#sunlight").html('<div style="color: red;"><p><h3>'+e[7]+" hours</h3></p><p>Too much Sunlight</p></div>"):$("#sunlight").html('<div style="color: red;"><p>Server gave a malformed response</p><p>Response:<br/>'+e[7]+"</p></div>"):$("#sunlight").html("<div><p><h3>...</h3></p><p>Retrieving data from server</p></div>"),"NA"!=e[8]?e[8]>=t[4]&&e[8]<=o[4]?$("#waterlevel").html('<div style="color: green;"><p><h3>'+e[8]+"%</h3></p><p>Water Level Ok</p></div>"):e[8]<t[4]?$("#waterlevel").html('<div style="color: red;"><p><h3>'+e[8]+"%</h3></p><p>Water Level Low</p></div>"):e[8]>o[4]?$("#waterlevel").html('<div style="color: blue;"><p><h3>'+e[8]+"%</h3></p><p>Water Level High</p></div>"):$("#waterlevel").html('<div style="color: red;"><p>Server gave a malformed response</p><p>Response:<br/>'+e[8]+"</p></div>"):$("#waterlevel").html("<div><p><h3>...</h3></p><p>Retrieving data from server</p></div>"),"NA"!=e[1]?"Idle"==e[1]?$("#waterpump").html('<div style="color: green;"><p><h3>'+e[1]+"</h3></p><p>Switched Off</p></div>"):"Active"==e[1]?$("#waterpump").html('<div style="color: orange;"><p><h3>'+e[1]+"</h3></p><p>Switched On</p></div>"):$("#waterpump").html('<div style="color: red;"><p>Server gave a malformed response</p><p>Response:<br/>'+e[0]+"</p></div>"):$("#waterpump").html("<div><p><h3>...</h3></p><p>Retrieving data from server</p></div>")},display_home(),getindex=function(){get("latest").then(function(t){void 0!=t[3]?t[3]!=e[3]&&(e=t):e=["Offline","NA","NA","NA","NA","NA","NA","NA","NA"]},function(e){this.console.log(e)}).catch(function(e){this.console.log(e)}),get("limits").then(function(e){e[0]!=t&&(t=e[0]),e[1]!=o&&(o=e[1])},function(e){this.console.log(e)}).catch(function(e){this.console.log(e)}).then(function(){display_home()})},getindex(),this.setInterval(function(){getindex()},3e5)}if("/actions.html"==window.location.pathname){var r={timestamp:"NA",status:"NA",station:"NA",motor:"NA",settings:{temperature:"NA",humidity:"NA",moisture:"NA",email:"NA",sms:"NA"}},t=["NA","NA","NA","NA","NA"],o=["NA","NA","NA","NA","NA"];$("#restartButton").click(function(){post("action",{action:"restart"}).then(function(e){"Successful"==e?(r.station="Offline",$("#stationstatus").html('<span style="color: orange;">Restarting</span>')):alert("Couldn't restart station. Error "+e)},function(e){this.console.log(e)}).catch(function(e){this.console.log(e)})}),$("#shutdownButton").click(function(){post("action",{action:"shutdown"}).then(function(e){"Successful"==e?(r.station="Offline",$("#stationstatus").html('<span style="color: red;">Offline</span>')):alert("Couldn't shutdown station. Error "+e)},function(e){this.console.log(e)}).catch(function(e){this.console.log(e)})}),$("#pumpButton").click(function(){post("action",{action:"toggle"}).then(function(e){"Successful"==e?"Idle"==r.motor?(r.motor="Active",$("#pumpstatus").html('<span style="color: orange;">'+r.motor+"</span>")):"Active"==r.motor&&(r.motor="Idle",$("#pumpstatus").html('<span style="color: green;">'+r.motor+"</span>")):alert("Couldn't toggle motor. Error "+e)},function(e){this.console.log(e)}).catch(function(e){this.console.log(e)})}),$("#updatesettingsButton").click(function(){post("settings",{temperature:$("#tempalert").is(":checked"),humidity:$("#humidalert").is(":checked"),moisture:$("#moisturealert").is(":checked"),email:$("#settingsemailalert").is(":checked"),sms:$("#settingssmsalert").is(":checked")}).then(function(e){post("limits",{data:[[$("#temprature_range").data("ionRangeSlider").result.from,$("#humidity_range").data("ionRangeSlider").result.from,$("#moisture_range").data("ionRangeSlider").result.from,$("#sunlight_range").data("ionRangeSlider").result.from,$("#waterlevel_range").data("ionRangeSlider").result.from],[$("#temprature_range").data("ionRangeSlider").result.to,$("#humidity_range").data("ionRangeSlider").result.to,$("#moisture_range").data("ionRangeSlider").result.to,$("#sunlight_range").data("ionRangeSlider").result.to,$("#waterlevel_range").data("ionRangeSlider").result.to]]}).then(function(t){"Successful"==e|"Successful"==t&&alert("Settings Updated")})},function(e){this.console.log(e)}).catch(function(e){this.console.log(e)}),$("#temprature_range").data("ionRangeSlider").update({from:$("#temprature_range").data("ionRangeSlider").result.from,to:$("#temprature_range").data("ionRangeSlider").result.to}),$("#humidity_range").data("ionRangeSlider").update({from:$("#humidity_range").data("ionRangeSlider").result.from,to:$("#humidity_range").data("ionRangeSlider").result.to}),$("#moisture_range").data("ionRangeSlider").update({from:$("#moisture_range").data("ionRangeSlider").result.from,to:$("#moisture_range").data("ionRangeSlider").result.to}),$("#sunlight_range").data("ionRangeSlider").update({from:$("#sunlight_range").data("ionRangeSlider").result.from,to:$("#sunlight_range").data("ionRangeSlider").result.to}),$("#waterlevel_range").data("ionRangeSlider").update({from:$("#waterlevel_range").data("ionRangeSlider").result.from,to:$("#waterlevel_range").data("ionRangeSlider").result.to})}),display_home=function(){"NA"!=r.station?"Operational"==r.station?$("#stationstatus").html('<span style="color: green;">'+r.station+"</span>"):"Offline"==r.station?$("#stationstatus").html('<span style="color: red;">'+r.station+"</span>"):$("#stationstatus").html('<span style="color: red;">'+r.station+"<br/><h6>Server gave a malformed response</h6></span>"):$("#stationstatus").html("<span><small>Loading...</small></span>"),"NA"!=r.motor?"Idle"==r.motor?$("#pumpstatus").html('<span style="color: green;">'+r.motor+"</span>"):"Active"==r.motor?$("#pumpstatus").html('<span style="color: orange;">'+r.motor+"</span>"):$("#pumpstatus").html('<span style="color: red;">'+r.motor+"<br/><h6>Server gave a malformed response</h6></span>"):$("#pumpstatus").html("<span><small>Loading...</small></span>"),"NA"!=t[0]&&"NA"!=o[0]&&$("#temprature_range").data("ionRangeSlider").options.from!=t[0]|$("#temprature_range").data("ionRangeSlider").options.to!=o[0]&&$("#temprature_range").data("ionRangeSlider").update({type:"double",min:0,max:60,from:t[0],to:o[0],grid:!0,postfix:"°C"}),"NA"!=t[1]&&"NA"!=o[1]&&$("#humidity_range").data("ionRangeSlider").options.from!=t[1]|$("#humidity_range").data("ionRangeSlider").options.to!=o[1]&&$("#humidity_range").data("ionRangeSlider").update({type:"double",min:0,max:100,from:t[1],to:o[1],grid:!0,postfix:"%"}),"NA"!=t[2]&&"NA"!=o[2]&&$("#moisture_range").data("ionRangeSlider").options.from!=t[2]|$("#moisture_range").data("ionRangeSlider").options.to!=o[2]&&$("#moisture_range").data("ionRangeSlider").update({type:"double",min:0,max:100,from:t[2],to:o[2],grid:!0,postfix:"%"}),"NA"!=t[3]&&"NA"!=o[3]&&$("#sunlight_range").data("ionRangeSlider").options.from!=t[3]|$("#sunlight_range").data("ionRangeSlider").options.to!=o[3]&&$("#sunlight_range").data("ionRangeSlider").update({type:"double",min:0,max:10,from:t[3],to:o[3],grid:!0,postfix:" hours"}),"NA"!=t[4]&&"NA"!=o[4]&&$("#waterlevel_range").data("ionRangeSlider").options.from!=t[4]|$("#waterlevel_range").data("ionRangeSlider").options.to!=o[4]&&$("#waterlevel_range").data("ionRangeSlider").update({type:"double",min:0,max:100,from:t[4],to:o[4],grid:!0,postfix:"%"}),"NA"!=r.settings.temperature&&$("#tempalert").prop("checked",r.settings.temperature),"NA"!=r.settings.humidity&&$("#humidalert").prop("checked",r.settings.humidity),"NA"!=r.settings.moisture&&$("#moisturealert").prop("checked",r.settings.moisture),"NA"!=r.settings.sms&&$("#settingssmsalert").prop("checked",r.settings.sms),"NA"!=r.settings.email&&$("#settingsemailalert").prop("checked",r.settings.email)},display_home(),getaction=function(){get("status").then(function(e){void 0!=e.timestamp?e.timestamp!=r.timestamp&&(r=e):r.station="Offline"},function(e){this.console.log(e)}).catch(function(e){this.console.log(e)}),get("limits").then(function(e){e[0]!=t&&(t=e[0]),e[1]!=o&&(o=e[1])},function(e){this.console.log(e)}).catch(function(e){this.console.log(e)}).then(function(){display_home()})},getaction(),this.setInterval(function(){getaction()},3e5)}});
+var server_url = "http://192.168.0.103/"
+
+$(document).ready(function () {
+    if ($(".js-range-slider").length) {
+        $(".js-range-slider").ionRangeSlider({
+            type: "double",
+            min: 0,
+            max: 100,
+            from: 0,
+            to: 0,
+            grid: true,
+        });
+    }
+    
+    $("#loginmodalButton").click(function () {
+        $("#loginModal").modal('show');
+    });
+
+    $("#signupmodalButton").click(function () {
+        $("#signupModal").modal('show');
+    });
+});
+
+$(window).on('load', function() {
+    axios.defaults.baseURL = this.server_url;
+    var frequency = 300000;     //5 min:300000
+    //var frequency = 10000;     //10 seconds
+    get = function(uri) {
+        try {
+            return axios.get(uri)
+            .then(function (response) {
+                if (response.status==200){
+                    return Object.assign([],response.data.data);
+                }
+                else {
+                    console.log("Response: "+response.status+" "+response.statusText);
+                    return new Error('Error '+response.status+' '+response.statusText);
+                }
+            })
+            .catch(function (error) {
+                if (error.response) {
+                  // The request was made and the server responded with a status code
+                  // that falls out of the range of 2xx
+                  console.log("Error "+error.response.status+" "+error.response.statusText+" Couldn't fetch data from server for"+uri);
+                  console.log(error.config);
+                  console.log(error.response.data);
+                  console.log(error.response.status);
+                  console.log(error.response.headers);
+                  return new Error('Error '+error.response);
+                } else if (error.request) {
+                  // The request was made but no response was received
+                  // 'error.request' is an instance of XMLHttpRequest in the browser and an instance of
+                  // http.ClientRequest in node.js
+                  console.log("Server not responding for "+uri)
+                  console.log(error.config);
+                  console.log(error.request);
+                  return new Error('Error '+error.request);
+                } else {
+                  // Something happened in setting up the request that triggered an Error
+                  console.log(error.config);
+                  console.log('Error', error.message);
+                  return new Error('Error '+error.response.status+' '+error.response.statusText);
+                }
+            });
+        } catch (error) {
+            console.log(error);
+            return new Error('Error '+error);
+        }
+    }
+
+    post = function(uri,body) {
+        try {
+            return axios.post(uri, body, {headers: { "Access-Control-Allow-Origin" : "*", "Content-Type": "application/json;charset=utf-8"}})
+            .then(function (response) {
+                if (response.status==200 | response.status==201){
+                    return "Successful";
+                }
+                else {
+                    console.log(response);
+                    return "Successful";
+                }
+            })
+            .catch(function (error) {
+                if (error.response) {
+                  // The request was made and the server responded with a status code
+                  // that falls out of the range of 2xx
+                  alert("Error "+error.response.status+" "+error.response.statusText+" couldn't complete your request");
+                  console.log(error.config);
+                  console.log(error.response.data);
+                  console.log(error.response.status);
+                  console.log(error.response.headers);
+                  return new Error('Error '+error.response);
+                } else if (error.request) {
+                  // The request was made but no response was received
+                  // 'error.request' is an instance of XMLHttpRequest in the browser and an instance of
+                  // http.ClientRequest in node.js
+                  alert("Server is not responding for "+uri);
+                  console.log(error.request);
+                  console.log(error.config);
+                  return new Error('Error '+error.request);
+                } else {
+                  // Something happened in setting up the request that triggered an Error
+                  console.log('Error', error.message);
+                  console.log(error.config);
+                  return new Error('Error '+error.response.status+' '+error.response.statusText);
+                }
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    $("#signinButton").click(function () {
+        alert("Login is temporarily disabled");
+    });
+
+    $("#signupButton").click(function () {
+        alert("Registration is temporarily disabled");
+    });
+
+    if (window.location.pathname != '/' && window.location.pathname != '/index.html' && window.location.pathname != '/actions.html' && window.location.pathname != '/about.html') {
+        
+        get("logs")
+        .then(function(logs) {
+
+            var sheetslogs = logs.reverse();
+            var tot_current = ["NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA"];
+            var minimum = [0, 0, 0, 0, 0];
+            var maximum = [100, 100, 100, 10, 100];
+            var current;
+
+            graph_data = function (data) {
+                var graph_current = data;
+                graph_current[3] = graph_current[3] * 10;
+                return graph_current;
+            }
+
+            display_home = function() {
+                if (tot_current[0] != "NA") {
+                    if (tot_current[0] == "Good") {
+                        $("#overallstatus").html('<div style="color: green;"><p><h3>Good</h3></p><p>All systems operational<br>All parameters are within limits</p></div>');
+                    } else if (tot_current[0] == "Mild") {
+                        $("#overallstatus").html('<div style="color: orange;"><p><h3>Mild Issue</h3></p><p>All systems operational<br>Some parameters are out of limits</p></div>');
+                    } else if (tot_current[0] == "Bad") {
+                        $("#overallstatus").html('<div style="color: red;"><p><h3>Major Issue</h3></p><p>All systems operational<br>Some parameters are out of limits</p></div>');
+                    } else {
+                        $("#overallstatus").html('<div style="color: red;"><p>Server gave a malformed response</p><p>Response:<br/>'+tot_current[0]+'</p></div>');
+                    }
+                    
+                } else {
+                    $("#overallstatus").html('<div><p><h3>...</h3></p><p>Retrieving data from server</p></div>')
+                }
+    
+                if (tot_current[4] != "NA") {
+                    if (tot_current[4] >= minimum[0] && tot_current[4] <= maximum[0]) {
+                        $("#temperature").html('<div style="color: green;"><p><h3>'+tot_current[4]+'°C</h3></p><p>Suitable Temperature</p></div>');
+                    } else if (tot_current[4] < minimum[0]) {
+                        $("#temperature").html('<div style="color: blue;"><p><h3>'+tot_current[4]+'°C</h3></p><p>Temperature Low</p></div>');
+                    } else if (tot_current[4] > maximum[0]) {
+                        $("#temperature").html('<div style="color: red;"><p><h3>'+tot_current[4]+'°C</h3></p><p>Temperature High</p></div>');
+                    } else {
+                        $("#temperature").html('<div style="color: red;"><p>Server gave a malformed response</p><p>Response:<br/>'+tot_current[4]+'</p></div>');
+                    }
+                    
+                } else {
+                    $("#temperature").html('<div><p><h3>...</h3></p><p>Retrieving data from server</p></div>')
+                }
+    
+                if (tot_current[5] != "NA") {
+                    if (tot_current[5] >= minimum[1] && tot_current[5] <= maximum[1]) {
+                        $("#humidity").html('<div style="color: green;"><p><h3>'+tot_current[5]+'%</h3></p><p>Perfect Humidity</p></div>');
+                    } else if (tot_current[5] < minimum[1]) {
+                        $("#humidity").html('<div style="color: red;"><p><h3>'+tot_current[5]+'%</h3></p><p>Humidity Low</p></div>');
+                    } else if (tot_current[5] > maximum[1]) {
+                        $("#humidity").html('<div style="color: orange;"><p><h3>'+tot_current[5]+'%</h3></p><p>Humidity High</p></div>');
+                    } else {
+                        $("#humidity").html('<div style="color: red;"><p>Server gave a malformed response</p><p>Response:<br/>'+tot_current[5]+'</p></div>');
+                    }
+                    
+                } else {
+                    $("#humidity").html('<div><p><h3>...</h3></p><p>Retrieving data from server</p></div>')
+                } 
+    
+                if (tot_current[6] != "NA") {
+                    if (tot_current[6] >= minimum[2] && tot_current[6] <= maximum[2]) {
+                        $("#moisture").html('<div style="color: green;"><p><h3>'+tot_current[6]+'%</h3></p><p>Happy Soil</p></div>');
+                    } else if (tot_current[6] < minimum[2]) {
+                        $("#moisture").html('<div style="color: red;"><p><h3>'+tot_current[6]+'%</h3></p><p>Dry Soil</p></div>');
+                    } else if (tot_current[6] > maximum[2]) {
+                        $("#moisture").html('<div style="color: orange;"><p><h3>'+tot_current[6]+'%</h3></p><p>Wet Soil</p></div>');
+                    } else {
+                        $("#moisture").html('<div style="color: red;"><p>Server gave a malformed response</p><p>Response:<br/>'+tot_current[6]+'</p></div>');
+                    }
+                    
+                } else {
+                    $("#moisture").html('<div><p><h3>...</h3></p><p>Retrieving data from server</p></div>')
+                } 
+    
+                if (tot_current[7] != "NA") {
+                    if (tot_current[7] >= minimum[3] && tot_current[7] <= maximum[3]) {
+                        $("#sunlight").html('<div style="color: green;"><p><h3>'+tot_current[7]+' hours</h3></p><p>Sunny Day</p></div>');
+                    } else if (tot_current[7] < minimum[3]) {
+                        $("#sunlight").html('<div style="color: blue;"><p><h3>'+tot_current[7]+' hours</h3></p><p>Overcast</p></div>');
+                    } else if (tot_current[7] > maximum[3]) {
+                        $("#sunlight").html('<div style="color: red;"><p><h3>'+tot_current[7]+' hours</h3></p><p>Too much Sunlight</p></div>');
+                    } else {
+                        $("#sunlight").html('<div style="color: red;"><p>Server gave a malformed response</p><p>Response:<br/>'+tot_current[7]+'</p></div>');
+                    }
+                    
+                } else {
+                    $("#sunlight").html('<div><p><h3>...</h3></p><p>Retrieving data from server</p></div>')
+                } 
+    
+                if (tot_current[8] != "NA") {
+                    if (tot_current[8] >= minimum[4] && tot_current[8] <= maximum[4]) {
+                        $("#waterlevel").html('<div style="color: green;"><p><h3>'+tot_current[8]+'%</h3></p><p>Water Level Ok</p></div>');
+                    } else if (tot_current[8] < minimum[4]) {
+                        $("#waterlevel").html('<div style="color: red;"><p><h3>'+tot_current[8]+'%</h3></p><p>Water Level Low</p></div>');
+                    } else if (tot_current[8] > maximum[4]) {
+                        $("#waterlevel").html('<div style="color: blue;"><p><h3>'+tot_current[8]+'%</h3></p><p>Water Level High</p></div>');
+                    } else {
+                        $("#waterlevel").html('<div style="color: red;"><p>Server gave a malformed response</p><p>Response:<br/>'+tot_current[8]+'</p></div>');
+                    }
+                    
+                } else {
+                    $("#waterlevel").html('<div><p><h3>...</h3></p><p>Retrieving data from server</p></div>')
+                }
+    
+                if (tot_current[1] != "NA") {
+                    if (tot_current[1] == "Idle") {
+                        $("#waterpump").html('<div style="color: green;"><p><h3>'+tot_current[1]+'</h3></p><p>Switched Off</p></div>');
+                    } else if (tot_current[1] == "Active") {
+                        $("#waterpump").html('<div style="color: orange;"><p><h3>'+tot_current[1]+'</h3></p><p>Switched On</p></div>');
+                    } else {
+                        $("#waterpump").html('<div style="color: red;"><p>Server gave a malformed response</p><p>Response:<br/>'+tot_current[0]+'</p></div>');
+                    }
+                    
+                } else {
+                    $("#waterpump").html('<div><p><h3>...</h3></p><p>Retrieving data from server</p></div>')
+                }
+            }
+            display_home();
+            
+            get("latest")
+            .then(function(latest) {
+                tot_current = latest;
+                get("limits")
+                .then(function(limits) {
+                    minimum = limits[0];
+                    maximum = limits[1];
+                    if ($("#overall_graph").length) {
+                        overall_graph.series[0].setData(graph_data(limits[0]), true);
+                        overall_graph.series[1].setData(graph_data(limits[1]), true);
+                        overall_graph.series[2].setData(graph_data(sheetslogs[0].slice(1)), true);
+                    }
+                    display_home();
+                }, function (err) {this.console.log(err);})
+                .catch(function(error) {
+                    this.console.log(error);
+                });
+            }, function(err) {this.console.log(err);})
+            .catch(function(error) {
+                this.console.log(error);
+            });
+        
+            this.setInterval(function () {
+                get("latest")
+                .then(function(latest) {
+                    tot_current = latest;
+                    display_home();
+                    if (latest[3] != sheetslogs[0][0]) {
+                        var time = (new Date(latest[3])).getTime();
+                        sheetslogs.unshift(latest.slice(3));
+                        current = sheetslogs[0].slice(1);
+                        if ($("#overall_graph").length) {
+                            overall_graph.series[2].setData(graph_data(current), true);
+                        }
+                        if ($("#temperature_graph").length) {
+                            temperature_graph.series[0].addPoint([time, latest[4]], true, true);
+                        }
+                        if ($("#humidity_graph").length) {
+                            humidity_graph.series[0].addPoint([time, latest[5]], true, true);
+                        }
+                        if ($("#moisture_graph").length) {
+                            moisture_graph.series[0].addPoint([time, latest[6]], true, true);
+                        }
+                        if ($("#sunlight_graph").length) {
+                            sunlight_graph.series[0].addPoint([time, latest[7]], true, true);
+                        }
+                        if ($("#waterlevel_graph").length) {
+                            waterlevel_graph.series[0].addPoint([time, latest[8]], true, true);
+                        }
+                        
+                    }
+                }, function(err) {this.console.log(err);})
+                .catch(function(error) {
+                    this.console.log(error);
+                });
+            }, frequency);
+
+            if ($("#spreadsheet").length) {
+                var container = document.getElementById('spreadsheet');
+                var sheet = new Handsontable(container, {
+                data: sheetslogs,
+                rowHeaders: true,
+                colHeaders: ["", " Temperature (°C) ", " Humidity (%) ", " Moisture (%) ", " Sunlight (hours) ", " Water Level (%) "],
+                width: '100%',
+                height: '100%',
+                stretchH: 'all',
+                observeChanges: true,
+                exportFile: true,
+                licenseKey: 'non-commercial-and-evaluation'
+                });
+            }
+    
+            $("#downloadlogsButton").click(function () {
+                sheet.getPlugin("exportFile").downloadFile("csv", {filename: "PMS Server Logs"});
+            });
+
+            if ($("#temperature_spreadsheet").length) {
+                var container = document.getElementById('temperature_spreadsheet');
+                var sheet = new Handsontable(container, {
+                data: sheetslogs,
+                rowHeaders: true,
+                colHeaders: ["", " Temperature (°C) "],
+                width: '100%',
+                height: '100%',
+                stretchH: 'all',
+                observeChanges: true,
+                exportFile: true,
+                columns: [
+                  {data: 0},
+                  {data: 1}
+                ],
+                fixedColumnsLeft: 1,
+                licenseKey: 'non-commercial-and-evaluation'
+                });
+            }
+
+            $("#temperaturedownloadButton").click(function () {
+                sheet.getPlugin("exportFile").downloadFile("csv", {filename: "PMS Temperature Logs"});
+            });
+        
+            if ($("#humidity_spreadsheet").length) {
+                
+                var container = document.getElementById('humidity_spreadsheet');
+                var sheet = new Handsontable(container, {
+                data: sheetslogs,
+                rowHeaders: true,
+                colHeaders: ["", " Humidity (%) "],
+                width: '100%',
+                height: '100%',
+                stretchH: 'all',
+                observeChanges: true,
+                exportFile: true,
+                columns: [
+                  {data: 0},
+                  {data: 2}
+                ],
+                fixedColumnsLeft: 1,
+                licenseKey: 'non-commercial-and-evaluation'
+                });
+            }
+
+            $("#humiditydownloadButton").click(function () {
+                sheet.getPlugin("exportFile").downloadFile("csv", {filename: "PMS Humidity Logs"});
+            });
+        
+            if ($("#moisture_spreadsheet").length) {
+                
+                var container = document.getElementById('moisture_spreadsheet');
+                var sheet = new Handsontable(container, {
+                data: sheetslogs,
+                rowHeaders: true,
+                colHeaders: ["", " Moisture (%) "],
+                width: '100%',
+                height: '100%',
+                stretchH: 'all',
+                observeChanges: true,
+                exportFile: true,
+                columns: [
+                  {data: 0},
+                  {data: 3}
+                ],
+                fixedColumnsLeft: 1,
+                licenseKey: 'non-commercial-and-evaluation'
+                });
+            }
+
+            $("#moisturedownloadButton").click(function () {
+                sheet.getPlugin("exportFile").downloadFile("csv", {filename: "PMS Moisture Logs"});
+            });
+        
+            if ($("#sunlight_spreadsheet").length) {
+                
+                var container = document.getElementById('sunlight_spreadsheet');
+                var sheet = new Handsontable(container, {
+                data: sheetslogs,
+                rowHeaders: true,
+                colHeaders: ["", " Sunlight (hours) "],
+                width: '100%',
+                height: '100%',
+                stretchH: 'all',
+                observeChanges: true,
+                exportFile: true,
+                columns: [
+                  {data: 0},
+                  {data: 4}
+                ],
+                fixedColumnsLeft: 1,
+                licenseKey: 'non-commercial-and-evaluation'
+                });
+            }
+
+            $("#sunlightdownloadButton").click(function () {
+                sheet.getPlugin("exportFile").downloadFile("csv", {filename: "PMS Sunlight Logs"});
+            });
+        
+            if ($("#waterlevel_spreadsheet").length) {
+                
+                var container = document.getElementById('waterlevel_spreadsheet');
+                var sheet = new Handsontable(container, {
+                data: sheetslogs,
+                rowHeaders: true,
+                colHeaders: ["", " Water Level (%) "],
+                width: '100%',
+                height: '100%',
+                stretchH: 'all',
+                observeChanges: true,
+                exportFile: true,
+                columns: [
+                  {data: 0},
+                  {data: 5}
+                ],
+                fixedColumnsLeft: 1,
+                licenseKey: 'non-commercial-and-evaluation'
+                });
+            }
+
+            $("#waterleveldownloadButton").click(function () {
+                sheet.getPlugin("exportFile").downloadFile("csv", {filename: "PMS Water Level Logs"});
+            });
+        
+            if ($("#overall_graph").length) {
+                var overall_graph = Highcharts.chart('overall_graph', {
+                    chart: {
+                        polar: true,
+                        type: 'line'
+                    },
+                
+                    title: {
+                        text: ''
+                    },
+                
+                    pane: {
+                        size: '80%'
+                    },
+                
+                    xAxis: {
+                        type: 'datetime',
+                        categories: ['Temperature', 'Humidity', 'Soil Moisture', 'Sunlight', 'Water Level'],
+                        tickmarkPlacement: 'on',
+                        lineWidth: 0
+                    },
+                
+                    yAxis: {
+                        gridLineInterpolation: 'polygon',
+                        lineWidth: 0,
+                        min: 0,
+                        ceiling: 125,
+                    },
+                
+                    tooltip: {
+                        shared: true,
+                        pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.0f}</b><br/>'
+                    },
+                
+                    series: [{
+                        name: 'Minimum',
+                        data: minimum,
+                        pointPlacement: 'off'
+                    }, {
+                        name: 'Maximum',
+                        data: maximum,
+                        pointPlacement: 'off'
+                    }, {
+                        name: 'Current',
+                        data: current,
+                        pointPlacement: 'on'
+                    }],
+                
+                    responsive: {
+                        rules: [{
+                            condition: {
+                                maxWidth: 500
+                            },
+                            chartOptions: {
+                                legend: {
+                                    align: 'center',
+                                    verticalAlign: 'bottom',
+                                    layout: 'horizontal'
+                                },
+                                pane: {
+                                    size: '70%'
+                                }
+                            }
+                        }]
+                    }
+                
+                });
+            }
+
+            if ($("#temperature_graph").length) {
+                var temperature_graph = Highcharts.chart('temperature_graph', {
+                    chart: {
+                        type: 'line',
+                        animation: Highcharts.svg, // don't animate in old IE
+                        marginRight: 10
+                    },
+                
+                    title: {
+                        text: ''
+                    },
+
+                    time: {
+                        useUTC: false
+                    },
+                
+                    xAxis: {
+                        type: 'datetime',
+                        tickAmount: 10
+                    },
+                
+                    yAxis: {
+                        title: {
+                            text: 'Temperature in °C'
+                        },
+                        min: 0,
+                        max: 60,
+                        plotLines: [{
+                            value: 0,
+                            width: 1,
+                            color: '#808080'
+                        }]
+                    },
+                
+                    tooltip: {
+                        headerFormat: '<b>{series.name}</b><br/>',
+                        pointFormat: '{point.y}°C on {point.x:%d-%m-%Y at %H:%M}'
+                    },
+                
+                    legend: {
+                        enabled: false
+                    },
+                
+                    series: [{
+                        name: 'Temperature',
+                        data: logs.map(function(log) {
+                            return [(new Date(log[0])).getTime(),log[1]]
+                        }).reverse()
+                    }]
+                });
+            }
+            
+            if ($("#humidity_graph").length) {
+                var humidity_graph = Highcharts.chart('humidity_graph', {
+                    chart: {
+                        type: 'line',
+                        animation: Highcharts.svg, // don't animate in old IE
+                        marginRight: 10
+                    },
+                
+                    title: {
+                        text: ''
+                    },
+
+                    time: {
+                        useUTC: false
+                    },
+                
+                    xAxis: {
+                        type: 'datetime',
+                        tickAmount: 10
+                    },
+                
+                    yAxis: {
+                        title: {
+                            text: 'Humidity in %'
+                        },
+                        min: 0,
+                        max: 100,
+                        plotLines: [{
+                            value: 0,
+                            width: 1,
+                            color: '#808080'
+                        }]
+                    },
+                
+                    tooltip: {
+                        headerFormat: '<b>{series.name}</b><br/>',
+                        pointFormat: '{point.y}% on {point.x:%d-%m-%Y at %H:%M}'
+                    },
+                
+                    legend: {
+                        enabled: false
+                    },
+                
+                    series: [{
+                        name: 'Humidity',
+                        data: logs.map(function(log) {
+                            return [(new Date(log[0])).getTime(),log[2]]
+                        }).reverse()
+                    }]
+                });
+            }
+            
+            if ($("#moisture_graph").length) {
+                var moisture_graph = Highcharts.chart('moisture_graph', {
+                    chart: {
+                        type: 'line',
+                        animation: Highcharts.svg, // don't animate in old IE
+                        marginRight: 10
+                    },
+                
+                    title: {
+                        text: ''
+                    },
+
+                    time: {
+                        useUTC: false
+                    },
+                
+                    xAxis: {
+                        type: 'datetime',
+                        tickAmount: 10
+                    },
+                
+                    yAxis: {
+                        title: {
+                            text: 'Soil Moisture in %'
+                        },
+                        min: 0,
+                        max: 100,
+                        plotLines: [{
+                            value: 0,
+                            width: 1,
+                            color: '#808080'
+                        }]
+                    },
+                
+                    tooltip: {
+                        headerFormat: '<b>{series.name}</b><br/>',
+                        pointFormat: '{point.y}% on {point.x:%d-%m-%Y at %H:%M}'
+                    },
+                
+                    legend: {
+                        enabled: false
+                    },
+                
+                    series: [{
+                        name: 'Moisture',
+                        data: logs.map(function(log) {
+                            return [(new Date(log[0])).getTime(),log[3]]
+                        }).reverse()
+                    }]
+                });
+            }
+            
+            if ($("#sunlight_graph").length) {
+                var sunlight_graph = Highcharts.chart('sunlight_graph', {
+                    chart: {
+                        type: 'line',
+                        animation: Highcharts.svg, // don't animate in old IE
+                        marginRight: 10
+                    },
+                
+                    title: {
+                        text: ''
+                    },
+
+                    time: {
+                        useUTC: false
+                    },
+                
+                    xAxis: {
+                        type: 'datetime',
+                        tickAmount: 10
+                    },
+                
+                    yAxis: {
+                        title: {
+                            text: 'Sunlight in hours/day'
+                        },
+                        min: 0,
+                        max: 10,
+                        plotLines: [{
+                            value: 0,
+                            width: 1,
+                            color: '#808080'
+                        }]
+                    },
+                
+                    tooltip: {
+                        headerFormat: '<b>{series.name}</b><br/>',
+                        pointFormat: '{point.y} hours on {point.x:%d-%m-%Y at %H:%M}'
+                    },
+                
+                    legend: {
+                        enabled: false
+                    },
+                
+                    series: [{
+                        name: 'sunlight',
+                        data: logs.map(function(log) {
+                            return [(new Date(log[0])).getTime(),log[4]]
+                        }).reverse()
+                    }]
+                });
+            }
+        
+            if ($("#waterlevel_graph").length) {
+                var waterlevel_graph = Highcharts.chart('waterlevel_graph', {
+                    chart: {
+                        type: 'line',
+                        animation: Highcharts.svg, // don't animate in old IE
+                        marginRight: 10
+                    },
+                
+                    title: {
+                        text: ''
+                    },
+
+                    time: {
+                        useUTC: false
+                    },
+                
+                    xAxis: {
+                        type: 'datetime',
+                        tickAmount: 10
+                    },
+                
+                    yAxis: {
+                        title: {
+                            text: 'Waterlevel in %'
+                        },
+                        min: 0,
+                        max: 100,
+                        plotLines: [{
+                            value: 0,
+                            width: 1,
+                            color: '#808080'
+                        }]
+                    },
+                
+                    tooltip: {
+                        headerFormat: '<b>{series.name}</b><br/>',
+                        pointFormat: '{point.y}% on {point.x:%d-%m-%Y at %H:%M}'
+                    },
+                
+                    legend: {
+                        enabled: false
+                    },
+                
+                    series: [{
+                        name: 'waterlevel',
+                        data: logs.map(function(log) {
+                            return [(new Date(log[0])).getTime(),log[5]]
+                        }).reverse()
+                    }]
+                });
+            }
+        }, function (err) {this.console.log(err);})
+        .catch(function(error) {
+            this.console.log(error);
+        })
+    }
+
+    if (window.location.pathname == '/' | window.location.pathname == '/index.html') {
+        
+        var current = ["NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA"];
+        var min = [0, 0, 0, 0, 0];
+        var max = [100, 100, 100, 10, 100];
+
+        display_home = function() {
+            if (current[0] != "NA") {
+                if (current[0] == "Good") {
+                    $("#overallstatus").html('<div style="color: green;"><p><h3>Good</h3></p><p>All systems operational<br>All parameters are within limits</p></div>');
+                } else if (current[0] == "Mild") {
+                    $("#overallstatus").html('<div style="color: orange;"><p><h3>Mild Issue</h3></p><p>All systems operational<br>Some parameters are out of limits</p></div>');
+                } else if (current[0] == "Bad") {
+                    $("#overallstatus").html('<div style="color: red;"><p><h3>Major Issue</h3></p><p>All systems operational<br>Some parameters are out of limits</p></div>');
+                } else if (current[0] == "Offline") {
+                    $("#overallstatus").html('<div style="color: red;"><p><h3>Server Offline</h3></p><p>All systems shutdown</p></div>');
+                } else {
+                    $("#overallstatus").html('<div style="color: red;"><p>Server gave a malformed response</p><p>Response:<br/>'+current[0]+'</p></div>');
+                }
+                
+            } else {
+                $("#overallstatus").html('<div><p><h3>...</h3></p><p>Retrieving data from server</p></div>')
+            }
+
+            if (current[4] != "NA") {
+                if (current[4] >= min[0] && current[4] <= max[0]) {
+                    $("#temperature").html('<div style="color: green;"><p><h3>'+current[4]+'°C</h3></p><p>Suitable Temperature</p></div>');
+                } else if (current[4] < min[0]) {
+                    $("#temperature").html('<div style="color: blue;"><p><h3>'+current[4]+'°C</h3></p><p>Temperature Low</p></div>');
+                } else if (current[4] > max[0]) {
+                    $("#temperature").html('<div style="color: red;"><p><h3>'+current[4]+'°C</h3></p><p>Temperature High</p></div>');
+                } else {
+                    $("#temperature").html('<div style="color: red;"><p>Server gave a malformed response</p><p>Response:<br/>'+current[4]+'</p></div>');
+                }
+                
+            } else {
+                $("#temperature").html('<div><p><h3>...</h3></p><p>Retrieving data from server</p></div>')
+            }
+
+            if (current[5] != "NA") {
+                if (current[5] >= min[1] && current[5] <= max[1]) {
+                    $("#humidity").html('<div style="color: green;"><p><h3>'+current[5]+'%</h3></p><p>Perfect Humidity</p></div>');
+                } else if (current[5] < min[1]) {
+                    $("#humidity").html('<div style="color: red;"><p><h3>'+current[5]+'%</h3></p><p>Humidity Low</p></div>');
+                } else if (current[5] > max[1]) {
+                    $("#humidity").html('<div style="color: orange;"><p><h3>'+current[5]+'%</h3></p><p>Humidity High</p></div>');
+                } else {
+                    $("#humidity").html('<div style="color: red;"><p>Server gave a malformed response</p><p>Response:<br/>'+current[5]+'</p></div>');
+                }
+                
+            } else {
+                $("#humidity").html('<div><p><h3>...</h3></p><p>Retrieving data from server</p></div>')
+            } 
+
+            if (current[6] != "NA") {
+                if (current[6] >= min[2] && current[6] <= max[2]) {
+                    $("#moisture").html('<div style="color: green;"><p><h3>'+current[6]+'%</h3></p><p>Happy Soil</p></div>');
+                } else if (current[6] < min[2]) {
+                    $("#moisture").html('<div style="color: red;"><p><h3>'+current[6]+'%</h3></p><p>Dry Soil</p></div>');
+                } else if (current[6] > max[2]) {
+                    $("#moisture").html('<div style="color: orange;"><p><h3>'+current[6]+'%</h3></p><p>Wet Soil</p></div>');
+                } else {
+                    $("#moisture").html('<div style="color: red;"><p>Server gave a malformed response</p><p>Response:<br/>'+current[6]+'</p></div>');
+                }
+                
+            } else {
+                $("#moisture").html('<div><p><h3>...</h3></p><p>Retrieving data from server</p></div>')
+            } 
+
+            if (current[7] != "NA") {
+                if (current[7] >= min[3] && current[7] <= max[3]) {
+                    $("#sunlight").html('<div style="color: green;"><p><h3>'+current[7]+' hours</h3></p><p>Sunny Day</p></div>');
+                } else if (current[7] < min[3]) {
+                    $("#sunlight").html('<div style="color: blue;"><p><h3>'+current[7]+' hours</h3></p><p>Overcast</p></div>');
+                } else if (current[7] > max[3]) {
+                    $("#sunlight").html('<div style="color: red;"><p><h3>'+current[7]+' hours</h3></p><p>Too much Sunlight</p></div>');
+                } else {
+                    $("#sunlight").html('<div style="color: red;"><p>Server gave a malformed response</p><p>Response:<br/>'+current[7]+'</p></div>');
+                }
+                
+            } else {
+                $("#sunlight").html('<div><p><h3>...</h3></p><p>Retrieving data from server</p></div>')
+            } 
+
+            if (current[8] != "NA") {
+                if (current[8] >= min[4] && current[8] <= max[4]) {
+                    $("#waterlevel").html('<div style="color: green;"><p><h3>'+current[8]+'%</h3></p><p>Water Level Ok</p></div>');
+                } else if (current[8] < min[4]) {
+                    $("#waterlevel").html('<div style="color: red;"><p><h3>'+current[8]+'%</h3></p><p>Water Level Low</p></div>');
+                } else if (current[8] > max[4]) {
+                    $("#waterlevel").html('<div style="color: blue;"><p><h3>'+current[8]+'%</h3></p><p>Water Level High</p></div>');
+                } else {
+                    $("#waterlevel").html('<div style="color: red;"><p>Server gave a malformed response</p><p>Response:<br/>'+current[8]+'</p></div>');
+                }
+                
+            } else {
+                $("#waterlevel").html('<div><p><h3>...</h3></p><p>Retrieving data from server</p></div>')
+            }
+
+            if (current[1] != "NA") {
+                if (current[1] == "Idle") {
+                    $("#waterpump").html('<div style="color: green;"><p><h3>'+current[1]+'</h3></p><p>Switched Off</p></div>');
+                } else if (current[1] == "Active") {
+                    $("#waterpump").html('<div style="color: orange;"><p><h3>'+current[1]+'</h3></p><p>Switched On</p></div>');
+                } else {
+                    $("#waterpump").html('<div style="color: red;"><p>Server gave a malformed response</p><p>Response:<br/>'+current[0]+'</p></div>');
+                }
+                
+            } else {
+                $("#waterpump").html('<div><p><h3>...</h3></p><p>Retrieving data from server</p></div>')
+            }
+        }
+        display_home();
+
+        getindex = function() {
+            get("latest")
+            .then(function(latest) {
+                if (latest[3] != undefined) {
+                    if (latest[3] != current[3]) {
+                        current = latest;
+                    }
+                } else {
+                    current = ["Offline", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA"];
+                }
+            }, function(err) {this.console.log(err);})
+            .catch(function(error) {
+                this.console.log(error);
+            });
+
+            get("limits")
+            .then(function(limits) {
+                if (limits[0] != min) {
+                    min = limits[0];
+                }
+                if (limits[1] != max) {
+                    max = limits[1];
+                }
+            }, function(err) {this.console.log(err);})
+            .catch(function(error) {
+                this.console.log(error);
+            })
+            .then(function () {
+                display_home();
+            });
+        };
+        getindex();
+
+        this.setInterval(function () {
+            getindex();
+        }, frequency);
+
+    }
+
+    if (window.location.pathname == '/actions.html') {
+        
+        var currentstatus = {
+            timestamp: "NA",
+            status: "NA",
+            station: "NA",
+            motor: "NA",
+            settings: {
+              temperature: "NA",
+              humidity: "NA",
+              moisture: "NA",
+              email: "NA",
+              sms: "NA"
+            }
+        };
+        var min = ["NA", "NA", "NA", "NA", "NA"];
+        var max = ["NA", "NA", "NA", "NA", "NA"];
+
+        
+        $("#restartButton").click(function () {
+            post('action',{
+                "action":"restart"
+            })
+            .then(function(resp) {
+                if (resp == "Successful") {
+                    currentstatus.station = "Offline";
+                    $("#stationstatus").html('<span style="color: orange;">Restarting</span>');
+                }
+                else {
+                    alert("Couldn't restart station. Error "+resp);
+                }
+            }, function (err) {this.console.log(err);})
+            .catch(function(error) {this.console.log(error);})
+        });
+
+        $("#shutdownButton").click(function () {
+            post('action',{
+                "action":"shutdown"
+            })
+            .then(function(resp) {
+                if (resp == "Successful") {
+                    currentstatus.station = "Offline";
+                    $("#stationstatus").html('<span style="color: red;">Offline</span>');
+                }
+                else {
+                    alert("Couldn't shutdown station. Error "+resp);
+                }
+            }, function (err) {this.console.log(err);})
+            .catch(function(error) {this.console.log(error);})
+        });
+
+        $("#pumpButton").click(function () {
+            post('action',{
+                "action":"toggle"
+            })
+            .then(function(resp) {
+                if (resp == "Successful") {
+                    if (currentstatus.motor == "Idle") {
+                        currentstatus.motor = "Active";
+                        $("#pumpstatus").html('<span style="color: orange;">'+currentstatus.motor+'</span>');
+                    }
+                    else if (currentstatus.motor == "Active") {
+                        currentstatus.motor = "Idle";
+                        $("#pumpstatus").html('<span style="color: green;">'+currentstatus.motor+'</span>');
+                    }
+                }
+                else {
+                    alert("Couldn't toggle motor. Error "+resp);
+                }
+            }, function (err) {this.console.log(err);})
+            .catch(function(error) {this.console.log(error);})
+        });
+
+        $("#updatesettingsButton").click(function () {
+            post('settings', {
+                "temperature": $("#tempalert").is(":checked"),
+                "humidity": $("#humidalert").is(":checked"),
+                "moisture": $("#moisturealert").is(":checked"),
+                "email": $("#settingsemailalert").is(":checked"),
+                "sms": $("#settingssmsalert").is(":checked")
+            })
+            .then(function(resp1) {
+                post('limits', {
+                    "data": [
+                    [
+                        $("#temprature_range").data("ionRangeSlider").result.from,
+                        $("#humidity_range").data("ionRangeSlider").result.from,
+                        $("#moisture_range").data("ionRangeSlider").result.from,
+                        $("#sunlight_range").data("ionRangeSlider").result.from,
+                        $("#waterlevel_range").data("ionRangeSlider").result.from
+                    ],
+                    [
+                        $("#temprature_range").data("ionRangeSlider").result.to,
+                        $("#humidity_range").data("ionRangeSlider").result.to,
+                        $("#moisture_range").data("ionRangeSlider").result.to,
+                        $("#sunlight_range").data("ionRangeSlider").result.to,
+                        $("#waterlevel_range").data("ionRangeSlider").result.to
+                    ]
+                    ]
+                })
+                .then(function(resp2) {
+                    if (resp1 == "Successful" | resp2 == "Successful") {
+                        alert("Settings Updated");
+                    }
+                    
+                });
+            }, function (err) {this.console.log(err);})
+            .catch(function(error) {this.console.log(error);});
+            
+            $("#temprature_range").data("ionRangeSlider").update({
+                from: $("#temprature_range").data("ionRangeSlider").result.from,
+                to: $("#temprature_range").data("ionRangeSlider").result.to
+            }     
+            );
+
+            $("#humidity_range").data("ionRangeSlider").update({
+                from: $("#humidity_range").data("ionRangeSlider").result.from,
+                to: $("#humidity_range").data("ionRangeSlider").result.to
+            }     
+            );
+
+            $("#moisture_range").data("ionRangeSlider").update({
+                from: $("#moisture_range").data("ionRangeSlider").result.from,
+                to: $("#moisture_range").data("ionRangeSlider").result.to
+            }     
+            );
+
+            $("#sunlight_range").data("ionRangeSlider").update({
+                from: $("#sunlight_range").data("ionRangeSlider").result.from,
+                to: $("#sunlight_range").data("ionRangeSlider").result.to
+            }     
+            );
+
+            $("#waterlevel_range").data("ionRangeSlider").update({
+                from: $("#waterlevel_range").data("ionRangeSlider").result.from,
+                to: $("#waterlevel_range").data("ionRangeSlider").result.to
+            }     
+            );
+        });
+
+        display_home = function() {
+            if (currentstatus.station != "NA") {
+                if (currentstatus.station == "Operational") {
+                    $("#stationstatus").html('<span style="color: green;">'+currentstatus.station+'</span>');
+                } else if (currentstatus.station == "Offline") {
+                    $("#stationstatus").html('<span style="color: red;">'+currentstatus.station+'</span>');
+                } else {
+                    $("#stationstatus").html('<span style="color: red;">'+currentstatus.station+'<br/><h6>Server gave a malformed response</h6></span>');
+                }
+                
+            } else {
+                $("#stationstatus").html('<span><small>Loading...</small></span>');
+            }
+
+            if (currentstatus.motor != "NA") {
+                if (currentstatus.motor == "Idle") {
+                    $("#pumpstatus").html('<span style="color: green;">'+currentstatus.motor+'</span>');
+                } else if (currentstatus.motor == "Active") {
+                    $("#pumpstatus").html('<span style="color: orange;">'+currentstatus.motor+'</span>');
+                } else {
+                    $("#pumpstatus").html('<span style="color: red;">'+currentstatus.motor+'<br/><h6>Server gave a malformed response</h6></span>');
+                }
+                
+            } else {
+                $("#pumpstatus").html('<span><small>Loading...</small></span>');
+            }
+
+            if (min[0] != "NA" && max[0] != "NA") {
+                if ($("#temprature_range").data("ionRangeSlider").options.from != min[0] | $("#temprature_range").data("ionRangeSlider").options.to != max[0]) {
+                    $("#temprature_range").data("ionRangeSlider").update({
+                        type: "double",
+                        min: 0,
+                        max: 60,
+                        from: min[0],
+                        to: max[0],
+                        grid: true,
+                        postfix: "°C",
+                    }     
+                    );
+                }
+            }
+
+            if (min[1] != "NA" && max[1] != "NA") {
+                if ($("#humidity_range").data("ionRangeSlider").options.from != min[1] | $("#humidity_range").data("ionRangeSlider").options.to != max[1]) {
+                    $("#humidity_range").data("ionRangeSlider").update({
+                        type: "double",
+                        min: 0,
+                        max: 100,
+                        from: min[1],
+                        to: max[1],
+                        grid: true,
+                        postfix: "%",
+                    }     
+                    );
+                }
+            }
+
+            if (min[2] != "NA" && max[2] != "NA") {
+                if ($("#moisture_range").data("ionRangeSlider").options.from != min[2] | $("#moisture_range").data("ionRangeSlider").options.to != max[2]) {
+                    $("#moisture_range").data("ionRangeSlider").update({
+                        type: "double",
+                        min: 0,
+                        max: 100,
+                        from: min[2],
+                        to: max[2],
+                        grid: true,
+                        postfix: "%",
+                    }     
+                    );
+                }
+            }
+
+            if (min[3] != "NA" && max[3] != "NA") {
+                if ($("#sunlight_range").data("ionRangeSlider").options.from != min[3] | $("#sunlight_range").data("ionRangeSlider").options.to != max[3]) {
+                    $("#sunlight_range").data("ionRangeSlider").update({
+                        type: "double",
+                        min: 0,
+                        max: 10,
+                        from: min[3],
+                        to: max[3],
+                        grid: true,
+                        postfix: " hours",
+                    }     
+                    );
+                }
+            }
+
+            if (min[4] != "NA" && max[4] != "NA") {
+                if ($("#waterlevel_range").data("ionRangeSlider").options.from != min[4] | $("#waterlevel_range").data("ionRangeSlider").options.to != max[4]) {
+                    $("#waterlevel_range").data("ionRangeSlider").update({
+                        type: "double",
+                        min: 0,
+                        max: 100,
+                        from: min[4],
+                        to: max[4],
+                        grid: true,
+                        postfix: "%",
+                    }     
+                    );
+                }
+            }
+
+            if (currentstatus.settings.temperature != "NA") {
+                $('#tempalert').prop('checked', currentstatus.settings.temperature);
+            }
+
+            if (currentstatus.settings.humidity != "NA") {
+                $('#humidalert').prop('checked', currentstatus.settings.humidity);
+            }
+
+            if (currentstatus.settings.moisture != "NA") {
+                $('#moisturealert').prop('checked', currentstatus.settings.moisture);
+            }
+
+            if (currentstatus.settings.sms != "NA") {
+                $('#settingssmsalert').prop('checked', currentstatus.settings.sms);
+            }
+
+            if (currentstatus.settings.email != "NA") {
+                $('#settingsemailalert').prop('checked', currentstatus.settings.email);
+            }
+
+        }
+        display_home();
+
+        getaction = function() {
+            get("status")
+            .then(function(status) {
+                if (status.timestamp != undefined) {
+                    if (status.timestamp != currentstatus.timestamp) {
+                        currentstatus = status;
+                    }
+                } else {
+                    currentstatus.station = "Offline";
+                }
+            }, function(err) {
+                this.console.log(err);
+            })
+            .catch(function(error) {
+                this.console.log(error);
+            });
+    
+            get("limits")
+            .then(function(limits) {
+                if (limits[0] != min) {
+                    min = limits[0];
+                }
+                if (limits[1] != max) {
+                    max = limits[1];
+                }
+            }, function(err) {this.console.log(err);})
+            .catch(function(error) {
+                this.console.log(error);
+            })
+            .then(function () {
+                display_home();
+            });
+        };
+        getaction();
+        
+        this.setInterval(function () {
+            getaction();
+        }, frequency);
+
+    }
+});
